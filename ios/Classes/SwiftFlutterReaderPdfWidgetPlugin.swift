@@ -37,7 +37,8 @@ public class PdfView: NSObject, FlutterPlatformView {
         super.init()
         let path = NSHomeDirectory() as NSString
         self.indicator = PDFView(frame: frame)
-        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: path.appendingPathComponent(args as! String)))
+//        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: path.appendingPathComponent(args as! String)))
+        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: Bundle.main.path(forResource: "Vim.pdf", ofType: nil) ?? ""))
         self.indicator.displayDirection = .horizontal
         self.indicator.usePageViewController(true, withViewOptions: nil)
         self.indicator.pageBreakMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

@@ -20,12 +20,15 @@ class PDFDrawer {
     var colorInt: Int!
     var currentPagePathArray : [[String:Any]]! {
         didSet {
+            guard currentPagePathArray != nil else {
+                return
+            }
             for dict in currentPagePathArray {
                 let linePath = UIBezierPath()
                 let lineArray = dict["moves"] as? [[String:Any]] ?? [[String:Any]]()
-                linePath.move(to: CGPoint(x: lineArray[0]["x"] as? Double ?? 0.0, y: lineArray[0]["y"] as? Double ?? 0.0))
+                linePath.move(to: CGPoint(x: lineArray[0]["dx"] as? Double ?? 0.0, y: lineArray[0]["dy"] as? Double ?? 0.0))
                 for path in lineArray {
-                    linePath.addLine(to: CGPoint(x: path["x"] as? Double ?? 0.0, y: path["y"] as? Double ?? 0.0))
+                    linePath.addLine(to: CGPoint(x: path["dx"] as? Double ?? 0.0, y: path["dy"] as? Double ?? 0.0))
                     if currentAnnotation == nil {
                         let border = PDFBorder()
                         border.lineWidth = CGFloat(dict["paintWidth"] as? Int ?? 0)
@@ -141,8 +144,8 @@ extension PDFDrawer: DrawingGestureRecognizerDelegate {
         var tempArray = [[String:CGFloat]]()
         for point in path.cgPath.getPathElementsPoints() {
             var tempDict = [String:CGFloat]()
-            tempDict["x"] = point.x
-            tempDict["y"] = point.y
+            tempDict["dx"] = point.x
+            tempDict["dy"] = point.y
             tempArray.append(tempDict)
         }
         return tempArray
