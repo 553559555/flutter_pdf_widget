@@ -5,25 +5,32 @@ import 'package:flutter/services.dart';
 
 const _viewType = 'flutter_reader_pdf_widget';
 
-typedef void PdfVieControllerwWidgetCreatedCallback(PdfViewController controller);
+typedef void PdfVieControllerwWidgetCreatedCallback(
+    PdfViewController controller);
 
 class UIReaderPDFWidget extends StatefulWidget {
-
   final PdfVieControllerwWidgetCreatedCallback onActivityIndicatorWidgetCreated;
-  // 参数
+  // pdf路径参数
   final param;
+  final CallFlutterLocal callFlutterLocal;
 
-  UIReaderPDFWidget({Key key,this.onActivityIndicatorWidgetCreated,this.param}) : super(key: key);
+  const UIReaderPDFWidget(
+      {Key key,
+      this.onActivityIndicatorWidgetCreated,
+      this.param,
+      this.callFlutterLocal})
+      : super(key: key);
 
   _UIReaderPDFWidgetState createState() => _UIReaderPDFWidgetState();
 }
 
 class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
-
   // 注册一个通知
-  static const EventChannel eventChannel = const EventChannel('flutter_reader_pdf_widget/native_post');
+  // static const EventChannel eventChannel =
+  //     const EventChannel('flutter_reader_pdf_widget/native_post');
 
-  static const messageChannel = MethodChannel("flutter_reader_pdf_widget_event");
+  static const messageChannel =
+      MethodChannel("flutter_reader_pdf_widget_event");
 
   @override
   void initState() {
@@ -33,10 +40,11 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
       switch (call.method) {
         case 'getLinePath':
           print(call.arguments);
-          return 'dsfdsfdsf';
+          widget.callFlutterLocal.getLinePath(call.arguments);
+          break;
         case 'getCurrentPage':
           print(call.arguments);
-          return 'dsfdsfdsf';
+          return await widget.callFlutterLocal.getCurrentPage(call.arguments);
         default:
           throw MissingPluginException();
       }
@@ -63,12 +71,9 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
     }
     widget.onActivityIndicatorWidgetCreated(new PdfViewController._(id));
   }
-
 }
 
-
 class PdfViewController {
-
   PdfViewController._(int id)
       : _channel = MethodChannel('flutter_reader_pdf_widget_$id');
 
@@ -85,5 +90,12 @@ class PdfViewController {
   Future<void> changeLineColor(int lineColor) async {
     return _channel.invokeMethod('changeLineColor', lineColor);
   }
+}
 
+class CallFlutterLocal {
+  final FutureOr<void> Function(List<Map<String, dynamic>>) getLinePath;
+  final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
+      getCurrentPage;
+
+  CallFlutterLocal({@required this.getLinePath, @required this.getCurrentPage});
 }
