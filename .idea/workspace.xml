@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b58b15a1-53f7-4e7c-8443-f540bdbc25c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_reader_pdf_widget/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_reader_pdf_widget/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b58b15a1-53f7-4e7c-8443-f540bdbc25c1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -19,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flutter_reader_pdf_widget.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="509">
@@ -63,11 +60,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="57" column="101" selection-start-line="57" selection-start-column="91" selection-end-line="57" selection-end-column="101" />
+            <state relative-caret-position="670">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -115,8 +112,8 @@
       <list>
         <option value="$PROJECT_DIR$/ios/Classes/SwiftFlutterReaderPdfWidgetPlugin.swift" />
         <option value="$PROJECT_DIR$/test/flutter_reader_pdf_widget_test.dart" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/flutter_reader_pdf_widget.dart" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
       </list>
     </option>
   </component>
@@ -310,22 +307,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="57" column="101" selection-start-line="57" selection-start-column="91" selection-end-line="57" selection-end-column="101" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/flutter_reader_pdf_widget.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="509">
           <caret line="36" column="28" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="28" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
