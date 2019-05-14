@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_reader_pdf_widget (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios-release`)
+  - flutter_reader_pdf_widget (from `.symlinks/plugins/flutter_reader_pdf_widget/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios-release"
+  flutter_reader_pdf_widget:
+    :path: ".symlinks/plugins/flutter_reader_pdf_widget/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  flutter_reader_pdf_widget: 7d4aaa566514351fef4d925988af0238641d8e8b
+
+PODFILE CHECKSUM: ebd43b443038e611b86ede96e613bd6033c49497
+
+COCOAPODS: 1.5.3
