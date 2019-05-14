@@ -10,11 +10,15 @@ typedef void PdfVieControllerwWidgetCreatedCallback(
 
 class UIReaderPDFWidget extends StatefulWidget {
   final PdfVieControllerwWidgetCreatedCallback onActivityIndicatorWidgetCreated;
-  // 参数
+  // pdf路径参数
   final param;
+  final CallFlutterLocal callFlutterLocal;
 
   const UIReaderPDFWidget(
-      {Key key, this.onActivityIndicatorWidgetCreated, this.param})
+      {Key key,
+      this.onActivityIndicatorWidgetCreated,
+      this.param,
+      this.callFlutterLocal})
       : super(key: key);
 
   _UIReaderPDFWidgetState createState() => _UIReaderPDFWidgetState();
@@ -36,10 +40,11 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
       switch (call.method) {
         case 'getLinePath':
           print(call.arguments);
-          return 'dsfdsfdsf';
+          widget.callFlutterLocal.getLinePath(call.arguments);
+          break;
         case 'getCurrentPage':
           print(call.arguments);
-          return 'dsfdsfdsf';
+          return await widget.callFlutterLocal.getCurrentPage(call.arguments);
         default:
           throw MissingPluginException();
       }
@@ -88,8 +93,9 @@ class PdfViewController {
 }
 
 class CallFlutterLocal {
-  final FutureOr<void> Function(List) getLinePath;
-  final FutureOr<List> Function(int pageNum) getCurrentPage;
+  final FutureOr<void> Function(List<Map<String, dynamic>>) getLinePath;
+  final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
+      getCurrentPage;
 
   CallFlutterLocal({@required this.getLinePath, @required this.getCurrentPage});
 }
