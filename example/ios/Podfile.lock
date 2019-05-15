@@ -4,19 +4,19 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_reader_pdf_widget (from `.symlinks/plugins/flutter_reader_pdf_widget/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   flutter_reader_pdf_widget:
     :path: ".symlinks/plugins/flutter_reader_pdf_widget/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  flutter_reader_pdf_widget: f3cf396c447653189fe2c6ed30f89642d41df3a9
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  flutter_reader_pdf_widget: 7d4aaa566514351fef4d925988af0238641d8e8b
 
-PODFILE CHECKSUM: 87eb3528768206727037e85c07bc1a60e088add2
+PODFILE CHECKSUM: 647cf8d688f93b557da617902e94b45a54e9035e
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.5.3
