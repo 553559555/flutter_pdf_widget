@@ -94,8 +94,8 @@ public class PdfView: NSObject, FlutterPlatformView {
         } else if method == "changeLineSize" {
             pdfDrawer.lineWidth = call.arguments as? Int
         } else if method == "changeLineColor" {
-            pdfDrawer.color = UIColor.colorWithHexString(hex: "#\(call.arguments ?? 0)")
-            pdfDrawer.colorInt = call.arguments as? Int
+            pdfDrawer.color = UIColor.colorWithHexString(hex: "#\(call.arguments ?? "")")
+            pdfDrawer.colorString = call.arguments as? String
         }
     }
     
