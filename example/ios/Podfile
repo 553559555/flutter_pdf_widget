@@ -33,11 +33,7 @@ def parse_KV_file(file, separator='=')
 end
 
 target 'Runner' do
-<<<<<<< HEAD
   use_frameworks!
-=======
- use_frameworks!
->>>>>>> e067a855f7675b7fe102c5b8ebff70fb6deb74df
 
   # Prepare symlinks folder. We use symlinks to avoid having Podfile.lock
   # referring to absolute paths on developers' machines.
