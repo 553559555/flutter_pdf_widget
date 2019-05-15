@@ -62,6 +62,8 @@ public class PdfView: NSObject, FlutterPlatformView {
             self.pdfDrawer.currentPagePathArray = result as? Array
         }
         
+        messageChannel.invokeMethod("getCurrentPageCount", arguments: self.indicator.document?.pageCount)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(pdfViewChange(notification:)), name: NSNotification.Name.PDFViewPageChanged, object: nil)
     }
     
