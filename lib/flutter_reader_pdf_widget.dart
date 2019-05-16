@@ -45,8 +45,9 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
         case 'getCurrentPage':
           print(call.arguments);
           return await widget.callFlutterLocal.getCurrentPage(call.arguments);
-          case 'getCurrentPageCount':
+        case 'getCurrentPageCount':
           print(call.arguments);
+          return await widget.callFlutterLocal.getTotalCount(call.arguments);
           break;
         default:
           throw MissingPluginException();
@@ -99,6 +100,10 @@ class CallFlutterLocal {
   final FutureOr<void> Function(List<Map<String, dynamic>>) getLinePath;
   final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
       getCurrentPage;
+  final FutureOr<void> Function(int totalCount) getTotalCount;
 
-  CallFlutterLocal({@required this.getLinePath, @required this.getCurrentPage});
+  CallFlutterLocal(
+      {@required this.getLinePath,
+      @required this.getCurrentPage,
+      @required this.getTotalCount});
 }
