@@ -87,7 +87,7 @@ class PdfViewController {
     return _channel.invokeMethod('changeLineSize', lineWidth);
   }
 
-  Future<void> changeLineColor(int lineColor) async {
+  Future<void> changeLineColor(String lineColor) async {
     return _channel.invokeMethod('changeLineColor', lineColor);
   }
 }
