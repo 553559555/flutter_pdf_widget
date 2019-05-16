@@ -96,7 +96,7 @@ class PdfViewController {
 }
 
 class CallFlutterLocal {
-  final FutureOr<void> Function(List<Map<String, dynamic>>) getLinePath;
+  final FutureOr<void> Function(List<dynamic>) getLinePath;
   final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
       getCurrentPage;
   final FutureOr<void> Function(int totalCount) getTotalCount;
