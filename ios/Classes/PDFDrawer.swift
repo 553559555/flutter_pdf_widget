@@ -17,7 +17,7 @@ class PDFDrawer {
     var color = UIColor.red // default color is red
     var lineWidth: Int! = 5
     var pathArray = [[String:Any]]()
-    var colorInt: Int!
+    var colorString: String!
     var currentPagePathArray : [[String:Any]]! {
         didSet {
             guard currentPagePathArray != nil else {
@@ -159,7 +159,7 @@ extension PDFDrawer: DrawingGestureRecognizerDelegate {
         tempDict["moves"] = pathArray
         tempDict["oX"] = 0
         tempDict["oY"] = 0
-        tempDict["paintColor"] = colorInt
+        tempDict["paintColor"] = colorString
         tempDict["paintWidth"] = lineWidth
         tempDict["start"] = pathArray.first
         tempDict["end"] = pathArray.last

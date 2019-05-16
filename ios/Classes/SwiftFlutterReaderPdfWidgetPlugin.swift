@@ -37,8 +37,7 @@ public class PdfView: NSObject, FlutterPlatformView {
         super.init()
         let path = NSHomeDirectory() as NSString
         self.indicator = PDFView(frame: frame)
-//        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: path.appendingPathComponent(args as! String)))
-        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: Bundle.main.path(forResource: "Vim.pdf", ofType: nil) ?? ""))
+        self.indicator.document = PDFDocument(url: URL(fileURLWithPath: path.appendingPathComponent(args as! String)))
         self.indicator.displayDirection = .horizontal
         self.indicator.usePageViewController(true, withViewOptions: nil)
         self.indicator.pageBreakMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -62,6 +61,8 @@ public class PdfView: NSObject, FlutterPlatformView {
             (result: Any?) -> Void in
             self.pdfDrawer.currentPagePathArray = result as? Array
         }
+        
+        messageChannel.invokeMethod("getCurrentPageCount", arguments: self.indicator.document?.pageCount)
         
         NotificationCenter.default.addObserver(self, selector: #selector(pdfViewChange(notification:)), name: NSNotification.Name.PDFViewPageChanged, object: nil)
     }
@@ -93,8 +94,8 @@ public class PdfView: NSObject, FlutterPlatformView {
         } else if method == "changeLineSize" {
             pdfDrawer.lineWidth = call.arguments as? Int
         } else if method == "changeLineColor" {
-            pdfDrawer.color = UIColor.colorWithHexString(hex: "#\(call.arguments ?? 0)")
-            pdfDrawer.colorInt = call.arguments as? Int
+            pdfDrawer.color = UIColor.colorWithHexString(hex: "#\(call.arguments ?? "")")
+            pdfDrawer.colorString = call.arguments as? String
         }
     }
     
