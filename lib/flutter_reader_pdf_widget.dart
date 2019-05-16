@@ -40,7 +40,8 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
       switch (call.method) {
         case 'getLinePath':
           print(call.arguments);
-          widget.callFlutterLocal.getLinePath(call.arguments);
+          print(call.arguments.runtimeType);
+          await widget.callFlutterLocal.getLinePath(call.arguments);
           break;
         case 'getCurrentPage':
           print(call.arguments);
@@ -48,7 +49,6 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
         case 'getCurrentPageCount':
           print(call.arguments);
           return await widget.callFlutterLocal.getTotalCount(call.arguments);
-          break;
         default:
           throw MissingPluginException();
       }
