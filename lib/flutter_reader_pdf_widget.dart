@@ -40,14 +40,14 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
       switch (call.method) {
         case 'getLinePath':
           print(call.arguments);
-          widget.callFlutterLocal.getLinePath(call.arguments);
-          break;
+          print(call.arguments.runtimeType);
+          return await widget.callFlutterLocal.getLinePath(call.arguments);
         case 'getCurrentPage':
           print(call.arguments);
           return await widget.callFlutterLocal.getCurrentPage(call.arguments);
-          case 'getCurrentPageCount':
+        case 'getCurrentPageCount':
           print(call.arguments);
-          break;
+          return await widget.callFlutterLocal.getTotalCount(call.arguments);
         default:
           throw MissingPluginException();
       }
@@ -90,15 +90,19 @@ class PdfViewController {
     return _channel.invokeMethod('changeLineSize', lineWidth);
   }
 
-  Future<void> changeLineColor(int lineColor) async {
+  Future<void> changeLineColor(String lineColor) async {
     return _channel.invokeMethod('changeLineColor', lineColor);
   }
 }
 
 class CallFlutterLocal {
-  final FutureOr<void> Function(List<Map<String, dynamic>>) getLinePath;
+  final FutureOr<void> Function(List<dynamic>) getLinePath;
   final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
       getCurrentPage;
+  final FutureOr<void> Function(int totalCount) getTotalCount;
 
-  CallFlutterLocal({@required this.getLinePath, @required this.getCurrentPage});
+  CallFlutterLocal(
+      {@required this.getLinePath,
+      @required this.getCurrentPage,
+      @required this.getTotalCount});
 }
