@@ -41,8 +41,7 @@ class _UIReaderPDFWidgetState extends State<UIReaderPDFWidget> {
         case 'getLinePath':
           print(call.arguments);
           print(call.arguments.runtimeType);
-          await widget.callFlutterLocal.getLinePath(call.arguments);
-          break;
+          return await widget.callFlutterLocal.getLinePath(call.arguments);
         case 'getCurrentPage':
           print(call.arguments);
           return await widget.callFlutterLocal.getCurrentPage(call.arguments);
