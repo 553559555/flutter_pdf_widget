@@ -23,6 +23,7 @@ class PDFDrawer {
             guard currentPagePathArray != nil else {
                 return
             }
+            pathArray.removeAll()
             for dict in currentPagePathArray {
                 let linePath = UIBezierPath()
                 let lineArray = dict["moves"] as? [[String:Any]] ?? [[String:Any]]()
