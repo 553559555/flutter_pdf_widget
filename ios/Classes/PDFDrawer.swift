@@ -34,7 +34,7 @@ class PDFDrawer {
                         border.lineWidth = CGFloat(dict["paintWidth"] as? Int ?? 0)
                         let page = pdfView.currentPage ?? PDFPage()
                         currentAnnotation = DrawingAnnotation(bounds: page.bounds(for: pdfView.displayBox), forType: .ink, withProperties: nil)
-                        currentAnnotation?.color = UIColor.colorWithHexString(hex: "#\(dict["paintColor"] as? Int ?? 0)").withAlphaComponent(1)
+                        currentAnnotation?.color = UIColor.colorWithHexString(hex: "#\(dict["paintColor"] as? String ?? "")").withAlphaComponent(1)
                         currentAnnotation?.border = border
                     }
                     currentAnnotation?.path = linePath
