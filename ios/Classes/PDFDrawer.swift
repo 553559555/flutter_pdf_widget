@@ -25,7 +25,7 @@ class PDFDrawer {
             }
             currentAnnotation?.path.removeAllPoints()
             pathArray.removeAll()
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.init(uptimeNanoseconds: UInt64(0.5)), execute: {
                 for dict in self.currentPagePathArray {
                     let linePath = UIBezierPath()
                     let lineArray = dict["moves"] as? [[String:Any]] ?? [[String:Any]]()
@@ -47,7 +47,7 @@ class PDFDrawer {
                     self.currentAnnotation = nil
                     self.pathArray.append(self.pathDict(pathArray: self.pathTransform(path: linePath)))
                 }
-            }
+            })
         }
     }
 }

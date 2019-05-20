@@ -70,7 +70,9 @@ public class PdfView: NSObject, FlutterPlatformView {
     @objc func pdfViewChange(notification: Notification) {
         messageChannel.invokeMethod("getCurrentPage", arguments: indicator.currentPage?.pageRef?.pageNumber) {
             (result: Any?) -> Void in
-            self.pdfDrawer.currentPagePathArray = result as? Array
+
+                self.pdfDrawer.currentPagePathArray = result as? Array
+//            })
         }
     }
     
