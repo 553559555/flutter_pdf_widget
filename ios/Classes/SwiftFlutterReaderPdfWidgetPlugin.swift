@@ -64,15 +64,14 @@ public class PdfView: NSObject, FlutterPlatformView {
         
         messageChannel.invokeMethod("getCurrentPageCount", arguments: self.indicator.document?.pageCount)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(pdfViewChange(notification:)), name: NSNotification.Name.PDFViewPageChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pdfNewPageChange(notification:)), name: NSNotification.Name.PDFViewVisiblePagesChanged, object: nil)
+        
     }
     
-    @objc func pdfViewChange(notification: Notification) {
+    @objc func pdfNewPageChange(notification: Notification) {
         messageChannel.invokeMethod("getCurrentPage", arguments: indicator.currentPage?.pageRef?.pageNumber) {
             (result: Any?) -> Void in
-
-                self.pdfDrawer.currentPagePathArray = result as? Array
-//            })
+            self.pdfDrawer.currentPagePathArray = result as? Array
         }
     }
     

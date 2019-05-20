@@ -25,29 +25,27 @@ class PDFDrawer {
             }
             currentAnnotation?.path.removeAllPoints()
             pathArray.removeAll()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.init(uptimeNanoseconds: UInt64(0.5)), execute: {
-                for dict in self.currentPagePathArray {
-                    let linePath = UIBezierPath()
-                    let lineArray = dict["moves"] as? [[String:Any]] ?? [[String:Any]]()
-                    linePath.move(to: CGPoint(x: lineArray[0]["dx"] as? Double ?? 0.0, y: lineArray[0]["dy"] as? Double ?? 0.0))
-                    for path in lineArray {
-                        linePath.addLine(to: CGPoint(x: path["dx"] as? Double ?? 0.0, y: path["dy"] as? Double ?? 0.0))
-                        if self.currentAnnotation == nil {
-                            let border = PDFBorder()
-                            border.lineWidth = CGFloat(dict["paintWidth"] as? Int ?? 0)
-                            let page = self.pdfView.currentPage ?? PDFPage()
-                            self.currentAnnotation = DrawingAnnotation(bounds: page.bounds(for: self.pdfView.displayBox), forType: .ink, withProperties: nil)
-                            self.currentAnnotation?.color = UIColor.colorWithHexString(hex: "#\(dict["paintColor"] as? String ?? "")").withAlphaComponent(1)
-                            self.currentAnnotation?.border = border
-                        }
-                        self.currentAnnotation?.path = linePath
-                        self.forceRedraw(annotation: self.currentAnnotation!, onPage: self.pdfView.currentPage ?? PDFPage())
+            for dict in self.currentPagePathArray {
+                let linePath = UIBezierPath()
+                let lineArray = dict["moves"] as? [[String:Any]] ?? [[String:Any]]()
+                linePath.move(to: CGPoint(x: lineArray[0]["dx"] as? Double ?? 0.0, y: lineArray[0]["dy"] as? Double ?? 0.0))
+                for path in lineArray {
+                    linePath.addLine(to: CGPoint(x: path["dx"] as? Double ?? 0.0, y: path["dy"] as? Double ?? 0.0))
+                    if self.currentAnnotation == nil {
+                        let border = PDFBorder()
+                        border.lineWidth = CGFloat(dict["paintWidth"] as? Int ?? 0)
+                        let page = self.pdfView.currentPage ?? PDFPage()
+                        self.currentAnnotation = DrawingAnnotation(bounds: page.bounds(for: self.pdfView.displayBox), forType: .ink, withProperties: nil)
+                        self.currentAnnotation?.color = UIColor.colorWithHexString(hex: "#\(dict["paintColor"] as? String ?? "")").withAlphaComponent(1)
+                        self.currentAnnotation?.border = border
                     }
-                    self.currentAnnotation?.completed()
-                    self.currentAnnotation = nil
-                    self.pathArray.append(self.pathDict(pathArray: self.pathTransform(path: linePath)))
+                    self.currentAnnotation?.path = linePath
+                    self.forceRedraw(annotation: self.currentAnnotation!, onPage: self.pdfView.currentPage ?? PDFPage())
                 }
-            })
+                self.currentAnnotation?.completed()
+                self.currentAnnotation = nil
+                self.pathArray.append(self.pathDict(pathArray: self.pathTransform(path: linePath)))
+            }
         }
     }
 }
